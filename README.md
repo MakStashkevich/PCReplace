@@ -1,7 +1,6 @@
-# Русский:
+# PCReplace \ Русский
 Плагин для замены пк блоков на пе блоки. Очень удобно при портировании карт :+1:
 
-***
 ### Как использовать?
 Чтобы заменить блоки вам понадобиться **кость** (можно изменить).
 При тапе ею будет происходить замена всех пк блоков в определенном радиусе (можно изменить)
@@ -18,7 +17,6 @@ const REPLACE_RADIUS = 15; //радиус, собственно на котор�
 
 *P.S. После ввода команды, сервер может на некоторое время зависнуть. Это связано с заменой блоков на всех чанках карты. Чем больше у вас карта, тем дольше будут заменяться блоки и тем дольше сервер будет находяться в "зависшем" состоянии.*
 
-***
 ### Список того, что хочу добавить:
 * Добавить больше блоков для замены (реализованы еще не все)
 * Добавить мультиязычность
@@ -26,10 +24,9 @@ const REPLACE_RADIUS = 15; //радиус, собственно на котор�
 
 ***
 
-# English:
-Pocketmine plugin to replace PC blocks in PE blocks...
+# PCReplace \ English
+Pocketmine plugin to replace PC blocks in PE blocks. Very convenient for porting maps :+1:
 
-***
 ### How to use?
 To replace the blocks you will need **bone** (you can change).
 At tap it will replace all pc blocks in a certain radius (you can change)
@@ -46,7 +43,6 @@ Replacement will occur exactly on the map on which you enter the command.
 
 *P.S. After entering the command, the server may hang for a while. This is due to the replacement of blocks on all the chunks of the card. The more you have a card, the longer blocks will be replaced and the longer the server will be in a "hung" state.*
 
-***
 ### TODO:
 * Add all PC blocks to replace
 * Add multilanguage
