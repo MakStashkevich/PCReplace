@@ -16,24 +16,24 @@ use pocketmine\utils\TextFormat;
 
 class PCReplace extends PluginBase implements Listener {
 
-	const LANGUAGE = "RU"; // RU or EN
+    const LANGUAGE = "RU"; // RU or EN
 
-	const REPLACE_ITEM = 352;
-	const REPLACE_RADIUS = 15;
+    const REPLACE_ITEM = 352;
+    const REPLACE_RADIUS = 15;
 
-	/**
-	 * Starting plugin...
-	 */
-	public function onEnable()
-	{
-		$this->getServer()->getPluginManager()->registerEvents($this, $this);
-		$this->getServer()->getCommandMap()->register('MSCommand', new PCReplaceCommand($this));
-		$this->getServer()->getLogger()->info(TextFormat::YELLOW."PCReplace> ".TextFormat::GREEN."Load!");
-		$this->getServer()->getLogger()->info(TextFormat::YELLOW."PCReplace> ".TextFormat::AQUA."Check updates on ".TextFormat::LIGHT_PURPLE."github.com/MakStashkevich");
-		$this->getServer()->getLogger()->info(TextFormat::YELLOW."PCReplace> ".TextFormat::AQUA."Tell me on ".TextFormat::LIGHT_PURPLE."t.me/MakStashkevich");
-	}
+    /**
+     * Starting plugin...
+     */
+    public function onEnable()
+    {
+	$this->getServer()->getPluginManager()->registerEvents($this, $this);
+	$this->getServer()->getCommandMap()->register('MSCommand', new PCReplaceCommand($this));
+	$this->getServer()->getLogger()->info(TextFormat::YELLOW."PCReplace> ".TextFormat::GREEN."Load!");
+	$this->getServer()->getLogger()->info(TextFormat::YELLOW."PCReplace> ".TextFormat::AQUA."Check updates on ".TextFormat::LIGHT_PURPLE."github.com/MakStashkevich");
+	$this->getServer()->getLogger()->info(TextFormat::YELLOW."PCReplace> ".TextFormat::AQUA."Tell me on ".TextFormat::LIGHT_PURPLE."t.me/MakStashkevich");
+    }
 
-	/**
+    /**
      * Player Interact
      * @param  PlayerInteractEvent $event
      */
