@@ -23,7 +23,7 @@ class Loader extends PluginBase
 		// register commands
 		$commands = [
 			new ReplaceMapCommand($this, 'replacemap', ['rpm', 'rmap']),
-			new ReplaceMapOnFolderCommand($this, 'replacemapfolder', ['rpmf', 'rmapf'])
+			new ReplaceMapOnFolderCommand($this, 'replacemapfolder', ['rmf', 'rpmf', 'rmapf', 'repmapf'])
 		];
 		$server->getCommandMap()->registerAll('MSCommand', $commands);
 

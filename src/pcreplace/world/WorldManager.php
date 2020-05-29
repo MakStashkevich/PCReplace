@@ -154,7 +154,8 @@ class WorldManager
 										$meta = $data[1] ?? 0;
 										$chunk->setBlockId($x, $y, $z, $id);
 										$chunk->setBlockData($x, $y, $z, $meta);
-									}
+										echo 'Change block ' . $blockId . ':' . $blockMeta . ' to ' . $id . ':' . $meta . PHP_EOL;
+ 									}
 								}
 							}
 						}

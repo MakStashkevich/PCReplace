@@ -50,7 +50,7 @@ class RegionWorld
 	/**
 	 * @var string (r.X.Z.mca)
 	 */
-	static $fileRegex = '/r\.(?<x>\d)\.(?<z>\d)\.mca/';
+	static $fileRegex = '/r\.(?<x>-?\d*)\.(?<z>-?\d*)\.mca/';
 
 	/** @var int */
 	protected $x = 0;
@@ -88,10 +88,7 @@ class RegionWorld
 		stream_set_read_buffer($this->filePointer, 1024 * 16); //16KB
 		stream_set_write_buffer($this->filePointer, 1024 * 16); //16KB
 
-		if (!$exists) {
-			return;
-		}
-
+		if (!$exists) return;
 		$this->loadLocationTable();
 	}
 
@@ -218,7 +215,7 @@ class RegionWorld
 		$length = Binary::readInt(fread($this->filePointer, 4));
 		$compression = ord(fgetc($this->filePointer));
 
-		if ($length <= 0 or $length > self::MAX_SECTOR_LENGTH) { //Not yet generated / corrupted
+		if ($length <= 0 or $length > self::MAX_SECTOR_LENGTH) { // Not yet generated / corrupted
 			if ($length >= self::MAX_SECTOR_LENGTH) {
 				$this->locationTable[$index][0] = ++$this->lastSector;
 				$this->locationTable[$index][1] = 1;
@@ -230,7 +227,7 @@ class RegionWorld
 			$compression = ord(fgetc($this->filePointer));
 		}
 
-		if ($length > ($this->locationTable[$index][1] << 12)) { //Invalid chunk, bigger than defined number of sectors
+		if ($length > ($this->locationTable[$index][1] << 12)) { // Invalid chunk, bigger than defined number of sectors
 			self::debug('Corrupted bigger chunk detected');
 			$this->locationTable[$index][1] = $length >> 12;
 			$this->writeLocationIndex($index);
@@ -412,5 +409,46 @@ class RegionWorld
 	{
 		$this->writeLocationTable();
 		fclose($this->filePointer);
+	}
+
+	private function cleanGarbage()
+	{
+		$sectors = [];
+		foreach ($this->locationTable as $index => $data) { //Calculate file usage
+			if ($data[0] === 0 or $data[1] === 0) {
+				$this->locationTable[$index] = [0, 0, 0];
+				continue;
+			}
+			for ($i = 0; $i < $data[1]; ++$i) {
+				$sectors[$data[0]] = $index;
+			}
+		}
+
+		if (count($sectors) === ($this->lastSector - 2)) { //No collection needed
+			return 0;
+		}
+
+		ksort($sectors);
+		$shift = 0;
+		$lastSector = 1; //First chunk - 1
+
+		fseek($this->filePointer, 8192);
+		$sector = 2;
+		foreach ($sectors as $sector => $index) {
+			if (($sector - $lastSector) > 1) {
+				$shift += $sector - $lastSector - 1;
+			}
+			if ($shift > 0) {
+				fseek($this->filePointer, $sector << 12);
+				$old = fread($this->filePointer, 4096);
+				fseek($this->filePointer, ($sector - $shift) << 12);
+				fwrite($this->filePointer, $old, 4096);
+			}
+			$this->locationTable[$index][0] -= $shift;
+			$lastSector = $sector;
+		}
+		ftruncate($this->filePointer, ($sector + 1) << 12); //Truncate to the end of file written
+
+		return $shift;
 	}
 }
