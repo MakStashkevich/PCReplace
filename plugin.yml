@@ -1,4 +1,4 @@
-name: Loader
+name: PCReplace
 main: pcreplace\Loader
 author: MakStashkevich
 version: 1.2.0
