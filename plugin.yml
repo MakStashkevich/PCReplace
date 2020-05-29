@@ -1,5 +1,5 @@
 name: Loader
-main: pcreplace\PCReplace
+main: pcreplace\Loader
 author: MakStashkevich
 version: 1.2.0
 api: [1.0.0, 2.0.0, 3.0.0]
