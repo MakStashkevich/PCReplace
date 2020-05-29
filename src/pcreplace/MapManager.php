@@ -2,6 +2,7 @@
 
 namespace pcreplace;
 
+use pcreplace\sources\Settings;
 use pocketmine\block\Block;
 use pocketmine\entity\Item;
 use pocketmine\level\Level;
@@ -53,17 +54,9 @@ class MapManager
 					$id = $block->getId();
 					$meta = $block->getDamage();
 
-					//rotate buttons
-					switch ($id) {
-						case 77: //Stone Button
-						case 143: //Wooden Button
-							//                            $level->setBlock($vector, Block::get($id, $meta >> 4));
-							continue;
-					}
-
-					//replace pc to pe blocks
-					if (isset(self::LIST[$id . ':' . $meta])) {
-						$data = self::LIST[$id . ':' . $meta];
+					// replace pc to pe blocks
+					if (isset(Settings::LIST[$id . ':' . $meta])) {
+						$data = Settings::LIST[$id . ':' . $meta];
 						$level->setBlock($vector, Block::get($data[0], $data[1]));
 					}
 				}
