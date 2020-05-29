@@ -1,5 +1,6 @@
 name: PCReplace
 main: pcreplace\Loader
+site: github.com/MakStashkevich
 author: MakStashkevich
 version: 1.2.0
 api: [1.0.0, 2.0.0, 3.0.0]
