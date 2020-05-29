@@ -2,8 +2,8 @@
 
 namespace pcreplace\commands;
 
-use pcreplace\maps\MapManager;
 use pcreplace\sources\Settings;
+use pcreplace\world\WorldManager;
 use pocketmine\command\CommandSender;
 use pocketmine\command\ConsoleCommandSender;
 use pocketmine\utils\TextFormat;
@@ -33,7 +33,7 @@ class ReplaceMapOnFolderCommand extends ReplaceCommand
 		}
 		$folder = trim($args[0]);
 
-		if (!MapManager::replaceMapOnFolder($folder)) {
+		if (!WorldManager::replaceMapOnFolder($folder)) {
 			return false;
 		}
 

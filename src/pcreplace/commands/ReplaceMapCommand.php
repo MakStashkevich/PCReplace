@@ -2,8 +2,8 @@
 
 namespace pcreplace\commands;
 
-use pcreplace\maps\MapManager;
 use pcreplace\sources\Settings;
+use pcreplace\world\WorldManager;
 use pocketmine\command\CommandSender;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
@@ -30,7 +30,7 @@ class ReplaceMapCommand extends ReplaceCommand
 		$sender->sendMessage(Settings::PREFIX . 'Now your server may hang for a while.');
 		$sender->sendMessage(Settings::PREFIX . 'The time it takes for the card depends on its size.');
 
-		MapManager::startReplace($sender);
+		WorldManager::startReplace($sender);
 
 		$sender->sendMessage(Settings::PREFIX . 'All blocks in level replaced!');
 		return true;

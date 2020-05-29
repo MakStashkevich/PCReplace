@@ -2,8 +2,8 @@
 
 namespace pcreplace;
 
-use pcreplace\maps\MapManager;
 use pcreplace\sources\Settings;
+use pcreplace\world\WorldManager;
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\player\PlayerMoveEvent;
 
@@ -26,8 +26,8 @@ class Listener implements \pocketmine\event\Listener
 		if ($item->getId() === Settings::REPLACE_ITEM) {
 			$player->sendMessage(Settings::PREFIX . 'Starting replace blocks...');
 
-			MapManager::replaceBlocksRadius($player->asPosition(), Settings::REPLACE_RADIUS);
-			MapManager::clearLevelDrops($player->getLevel());
+			WorldManager::replaceBlocksRadius($player->asPosition(), Settings::REPLACE_RADIUS);
+			WorldManager::clearLevelDrops($player->getLevel());
 
 			$player->sendMessage(Settings::PREFIX . 'All blocks replaced!');
 		}
