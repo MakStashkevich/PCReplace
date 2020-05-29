@@ -26,8 +26,8 @@ class Listener implements \pocketmine\event\Listener
 		if ($item->getId() === Settings::REPLACE_ITEM) {
 			$player->sendMessage(Settings::PREFIX . 'Starting replace blocks...');
 
-			MapManager::replaceBlocks($player->asPosition(), Settings::REPLACE_RADIUS);
-			MapManager::updateLevel($player->getLevel());
+			MapManager::replaceBlocksRadius($player->asPosition(), Settings::REPLACE_RADIUS);
+			MapManager::clearLevelDrops($player->getLevel());
 
 			$player->sendMessage(Settings::PREFIX . 'All blocks replaced!');
 		}

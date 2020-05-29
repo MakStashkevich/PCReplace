@@ -17,8 +17,8 @@ class MapManager
 	 */
 	static function startReplace(Player $player)
 	{
-		self::replaceAllBlocks($player->asPosition());
-		self::updateLevel($player->getLevel());
+		self::replaceBlocks($player->asPosition());
+		self::clearLevelDrops($player->getLevel());
 	}
 
 	/**
@@ -26,14 +26,14 @@ class MapManager
 	 *
 	 * @param Position $pos
 	 */
-	static function replaceAllBlocks(Position $pos)
+	static function replaceBlocks(Position $pos)
 	{
 		$level = $pos->getLevel();
 		$y = Level::Y_MAX / 2;
 		foreach ($level->getChunks() as $chunk) {
 			$x = $chunk->getX();
 			$z = $chunk->getZ();
-			self::replaceBlocks(new Position($x, $y, $z, $level), 16);
+			self::replaceBlocksRadius(new Position($x, $y, $z, $level), 16);
 		}
 	}
 
@@ -43,7 +43,7 @@ class MapManager
 	 * @param Position $pos
 	 * @param int|integer $radius
 	 */
-	static function replaceBlocks(Position $pos, int $radius = 10)
+	static function replaceBlocksRadius(Position $pos, int $radius = 10)
 	{
 		$level = $pos->getLevel();
 		for ($x = $pos->x - $radius; $x < $pos->x + $radius; $x++) {
@@ -69,7 +69,7 @@ class MapManager
 	 *
 	 * @param Level $level
 	 */
-	static function updateLevel(Level $level)
+	static function clearLevelDrops(Level $level)
 	{
 		foreach ($level->getEntities() as $drops) {
 			if ($drops instanceof Item) {
