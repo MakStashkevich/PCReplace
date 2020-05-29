@@ -2,14 +2,13 @@
 
 namespace pcreplace\commands;
 
-use pcreplace\MapManager;
+use pcreplace\maps\MapManager;
 use pcreplace\sources\Settings;
-use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\Player;
 use pocketmine\utils\TextFormat;
 
-class ReplaceMapCommand extends Command
+class ReplaceMapCommand extends ReplaceCommand
 {
 	/** @var string */
 	protected $description = 'Replace pc anvil map to pmanvil';
@@ -25,7 +24,7 @@ class ReplaceMapCommand extends Command
 	{
 		if (!$sender Instanceof Player) {
 			$sender->sendMessage(Settings::PREFIX . TextFormat::RED . 'Command only for players!');
-			return;
+			return false;
 		}
 
 		$sender->sendMessage(Settings::PREFIX . 'Now your server may hang for a while.');
@@ -34,5 +33,6 @@ class ReplaceMapCommand extends Command
 		MapManager::startReplace($sender);
 
 		$sender->sendMessage(Settings::PREFIX . 'All blocks in level replaced!');
+		return true;
 	}
 }

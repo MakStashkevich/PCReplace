@@ -2,6 +2,7 @@
 
 namespace pcreplace;
 
+use pcreplace\maps\MapManager;
 use pcreplace\sources\Settings;
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\player\PlayerMoveEvent;

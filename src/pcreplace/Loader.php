@@ -3,6 +3,7 @@
 namespace pcreplace;
 
 use pcreplace\commands\ReplaceMapCommand;
+use pcreplace\commands\ReplaceMapOnFolderCommand;
 use pcreplace\sources\Settings;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\TextFormat;
@@ -15,9 +16,18 @@ class Loader extends PluginBase
 	function onEnable()
 	{
 		$server = $this->getServer();
-		$server->getPluginManager()->registerEvents(new Listener(), $this);
-		$server->getCommandMap()->register('MSCommand', new ReplaceMapCommand($this));
 
+		// start listener
+		$server->getPluginManager()->registerEvents(new Listener(), $this);
+
+		// register commands
+		$commands = [
+			new ReplaceMapCommand($this, 'replacemap', ['rpm', 'rmap']),
+			new ReplaceMapOnFolderCommand($this, 'replacemapfolder', ['rpmf', 'rmapf'])
+		];
+		$server->getCommandMap()->registerAll('MSCommand', $commands);
+
+		// log to console
 		$this->log(TextFormat::GREEN . 'Load!');
 		$this->log(TextFormat::AQUA . 'Check updates on ' . TextFormat::LIGHT_PURPLE . 'github.com/MakStashkevich');
 		$this->log(TextFormat::AQUA . 'Tell me on ' . TextFormat::LIGHT_PURPLE . 't.me/MakStashkevich');

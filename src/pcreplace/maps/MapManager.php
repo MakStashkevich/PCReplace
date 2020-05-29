@@ -1,6 +1,6 @@
 <?php
 
-namespace pcreplace;
+namespace pcreplace\maps;
 
 use pcreplace\sources\Settings;
 use pocketmine\block\Block;
@@ -77,5 +77,16 @@ class MapManager
 			}
 		}
 		$level->clearCache();
+	}
+
+	/**
+	 * @param string $folder
+	 *
+	 * @return bool
+	 */
+	static function replaceMapOnFolder(string $folder)
+	{
+		// todo
+		return true;
 	}
 }
