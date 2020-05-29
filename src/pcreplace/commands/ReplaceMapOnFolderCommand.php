@@ -34,9 +34,10 @@ class ReplaceMapOnFolderCommand extends ReplaceCommand
 		$folder = trim($args[0]);
 
 		if (!WorldManager::replaceMapOnFolder($folder)) {
+			$sender->sendMessage(Settings::PREFIX . TextFormat::RED . 'Map ' . $folder . ' replaced failed!');
 			return false;
 		}
 
-		$sender->sendMessage(Settings::PREFIX . 'Map started replace..');
+		$sender->sendMessage(Settings::PREFIX . 'Map ' . $folder . ' replaced success!');
 	}
 }

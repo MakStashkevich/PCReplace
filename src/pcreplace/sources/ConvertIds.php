@@ -109,6 +109,12 @@ interface ConvertIds
 		'176:0' => [0, 0], // Free-standing Banner -> Air (PE Block not found)
 		'177:0' => [0, 0], // Wall-mounted Banner -> Air (PE Block not found)
 
+		'60:0' => [60, 0], // Farmland -> Farmland
+		'60:1' => [60, 0], // Farmland -> Farmland
+		'60:2' => [60, 0], // Farmland -> Farmland
+		'60:3' => [60, 0], // Farmland -> Farmland
+		'60:4' => [60, 0], // Farmland -> Farmland
+
 		'188:0' => [85, 1], // Spruce Fence
 		'189:0' => [85, 2], // Birch Fence
 		'190:0' => [85, 3], // Jungle Fence

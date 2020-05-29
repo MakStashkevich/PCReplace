@@ -48,9 +48,9 @@ class RegionWorld
 	static $COMPRESSION_LEVEL = 7;
 
 	/**
-	 * @var string (r.X.Z.mcr)
+	 * @var string (r.X.Z.mca)
 	 */
-	static $fileRegex = 'r\.(?<x>\d)\.(?<z>\d)\.mcr';
+	static $fileRegex = '/r\.(?<x>\d)\.(?<z>\d)\.mca/';
 
 	/** @var int */
 	protected $x = 0;

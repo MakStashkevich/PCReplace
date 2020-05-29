@@ -130,6 +130,7 @@ class WorldManager
 		foreach ($regions as $region) {
 			$regionX = $region->getX();
 			$regionZ = $region->getZ();
+			echo 'Change blocks on region X:' . $regionX . ', Z:' . $regionZ . PHP_EOL;
 
 			// get chunks
 			for ($chunkX = 0; $chunkX < RegionWorld::SECTION_COUNT; $chunkX++) {
